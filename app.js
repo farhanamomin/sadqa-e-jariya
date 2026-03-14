@@ -1,20 +1,31 @@
-import React from 'react';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
+// app.js
+let personalCounter = 0;
+let globalCounter = 0;
 
-const App = () => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <Text>Welcome to Sadqa-e-Jariya App</Text>
-    </SafeAreaView>
-  );
-};
+function showZikr( zikr ) {
+    const zikrText = {
+        astaghfirullah: 'Astaghfirullah',
+        awal_kalima: 'La ilaha illallah, Muhammadur Rasulullah',
+        bismillah: 'Bismillah ir-Rahman ir-Rahim'
+    };
+    document.getElementById('zikr-text').innerText = zikrText[zikr];
+    updateCounters();
+    vibrateFeedback();
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+function updateCounters() {
+    personalCounter++;
+    globalCounter++;
+    document.getElementById('personal-counter').innerText = personalCounter;
+    document.getElementById('global-counter').innerText = globalCounter;
+}
+
+function vibrateFeedback() {
+    if (navigator.vibrate) {
+        navigator.vibrate(100);
+    }
+}
+
+document.getElementById('toggle-dark-mode').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
 });
-
-export default App;
