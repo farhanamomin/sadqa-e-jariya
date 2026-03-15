@@ -5854,33 +5854,7 @@
       }
     }, 5000);
 
-    function showPWABanner() {
-      // Double-check not installed
-      if (isRunningAsApp()) return;
-      if (document.getElementById('pwa-bar')) return;
-      var bar = document.createElement('div');
-      bar.id = 'pwa-bar';
-      bar.style.cssText = [
-        'position:fixed;bottom:62px;left:50%;transform:translateX(-50%)',
-        'width:calc(100% - 20px);max-width:460px',
-        'background:linear-gradient(135deg,rgba(8,18,38,.99),rgba(4,10,22,.99))',
-        'border:1.5px solid rgba(201,168,76,.6);border-radius:18px',
-        'padding:13px 14px;display:flex;align-items:center;gap:10px',
-        'z-index:9999;box-shadow:0 8px 36px rgba(0,0,0,.85)',
-        'animation:pwaSlideUp .4s cubic-bezier(.25,.8,.25,1)'
-      ].join(';');
-      bar.innerHTML =
-        '<style>@keyframes pwaSlideUp{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}</style>' +
-        '<div style="font-size:24px;flex-shrink:0">▭</div>' +
-        '<div style="flex:1;min-width:0">' +
-        '<div style="font-family:Cormorant Garamond,serif;font-size:12px;letter-spacing:0.2px;color:#f0d080;margin-bottom:3px">INSTALL AS APP — FREE</div>' +
-        '<div style="font-family:DM Sans,sans-serif;font-size:12px;color:rgba(255,255,255,.5)">Works offline · Home screen icon</div>' +
-        '</div>' +
-        '<button onclick="doPWAInstall()" style="background:linear-gradient(135deg,#c9a84c,#f0d080);border:none;border-radius:20px;padding:9px 14px;font-family:Cormorant Garamond,serif;font-size:10px;font-weight:700;letter-spacing:0.1px;color:#040a14;cursor:pointer;flex-shrink:0">INSTALL</button>' +
-        '<button onclick="closePWABar()" style="background:none;border:1px solid rgba(255,255,255,.15);border-radius:50%;min-width:28px;width:28px;height:28px;color:rgba(255,255,255,.4);cursor:pointer;font-size:18px;flex-shrink:0;display:flex;align-items:center;justify-content:center">×</button>';
-      document.body.appendChild(bar);
-    }
-
+  
     function doPWAInstall() {
       if (_pwaPrompt) {
         _pwaPrompt.prompt();
